@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siji Malayil Associates – Advocates & Legal Consultants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ── TOKENS ── */
+:root {
+  --ink:      #0b0b0b;
+  --ink2:     #111;
+  --paper:    #f4f1eb;
+  --paper2:   #ede9e0;
+  --gold:     #b89a3a;
+  --gold2:    #d4b86a;
+  --gold-ink: #8a6f1e;      /* gold on white bg */
+  --grey-dk:  #7a7a7a;
+  --grey-lt:  #b0aca4;
+  --border-dk: rgba(255,255,255,0.07);
+  --border-lt: rgba(0,0,0,0.1);
+}
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* ─── DISCLAIMER ─── */
+#disc {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.9);
+  display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+}
+.disc-box {
+  background: var(--ink2); border: 1px solid rgba(184,154,58,0.35);
+  max-width: 600px; width: 100%; padding: 3rem 3.5rem;
+}
+.disc-box h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 400;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold2); margin-bottom: 1.2rem;
+}
+.disc-box p { font-size: 0.75rem; color: var(--grey-lt); line-height: 1.9; margin-bottom: 2rem; }
+.disc-btns { display: flex; gap: 1rem; }
+.d-agree {
+  background: var(--gold); color: var(--ink); border: none;
+  padding: 0.7rem 2.2rem;
+  font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: background .2s;
+}
+.d-agree:hover { background: var(--gold2); }
+.d-disagree {
+  background: transparent; color: var(--grey-dk);
+  border: 1px solid var(--border-dk); padding: 0.7rem 2.2rem;
+  font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; transition: all .2s;
+}
+.d-disagree:hover { border-color: var(--grey-lt); color: var(--paper); }
+
+/* ─── NAVBAR ─── */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 2rem 5vw; transition: padding .35s, background .35s, border .35s;
+}
+#nav.stuck {
+  padding: 1.1rem 5vw;
+  background: rgba(11,11,11,0.97);
+  border-bottom: 1px solid var(--border-dk);
+  backdrop-filter: blur(12px);
+}
+.nav-brand { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; }
+.nav-mono {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem; font-weight: 500;
+  color: var(--gold); line-height: 1; letter-spacing: 0.04em;
+}
+.nav-vline { width: 1px; height: 26px; background: rgba(184,154,58,0.4); }
+.nav-wm {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem; font-weight: 400; color: var(--paper); letter-spacing: 0.06em; line-height: 1.3;
+}
+.nav-wm span {
+  display: block; font-size: 0.6rem;
+  font-family: 'Montserrat', sans-serif; font-weight: 300;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey-lt);
+}
+.nav-links { display: flex; gap: 2.8rem; list-style: none; }
+.nav-links a {
+  font-size: 0.62rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--grey-lt); text-decoration: none; transition: color .2s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 1px; background: var(--gold);
+  transform: scaleX(0); transform-origin: left; transition: transform .25s;
+}
+.nav-links a:hover { color: var(--paper); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.hbg { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+.hbg span { display: block; width: 22px; height: 1px; background: var(--paper); transition: all .3s; }
+
+/* ─── MOBILE MENU ─── */
+#mm {
+  display: none; position: fixed; inset: 0; z-index: 190;
+  background: var(--ink); flex-direction: column; align-items: center; justify-content: center; gap: 2.2rem;
+}
+#mm.open { display: flex; }
+.mm-x { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; color: var(--paper); font-size: 1.4rem; cursor: pointer; }
+#mm a { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--paper); text-decoration: none; letter-spacing: 0.05em; transition: color .2s; }
+#mm a:hover { color: var(--gold); }
+
+/* ══════════════════════════════════════════
+   SECTION 1 — HERO   BG: BLACK
+══════════════════════════════════════════ */
+#hero {
+  background: var(--ink);
+  height: 100vh; min-height: 620px;
+  display: flex; align-items: flex-end;
+  position: relative; overflow: hidden;
+  padding: 0 5vw 7vw;
+}
+.h-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(184,154,58,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,154,58,0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+.h-vig {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 80%, rgba(184,154,58,0.07) 0%, transparent 55%),
+    linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 55%);
+}
+.h-circle {
+  position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
+  width: 520px; height: 520px; border-radius: 50%;
+  border: 1px solid rgba(184,154,58,0.07); pointer-events: none;
+}
+.h-circle::before {
+  content: ''; position: absolute; inset: 28px;
+  border-radius: 50%; border: 1px solid rgba(184,154,58,0.05);
+}
+.h-circle::after {
+  content: ''; position: absolute; inset: 58px;
+  border-radius: 50%; border: 1px solid rgba(184,154,58,0.03);
+}
+.h-rule {
+  position: absolute; left: 5vw; top: 28%; bottom: 28%;
+  width: 1px; background: linear-gradient(to bottom, transparent, rgba(184,154,58,0.3), transparent);
+}
+.h-content { position: relative; z-index: 2; }
+.h-tag {
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.6rem;
+  display: flex; align-items: center; gap: 0.9rem;
+}
+.h-tag::before { content: ''; width: 36px; height: 1px; background: var(--gold); }
+.h-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.2rem, 7.5vw, 6.2rem);
+  font-weight: 300; line-height: 1.08; letter-spacing: -0.01em;
+  color: var(--paper); max-width: 820px; margin-bottom: 2.2rem;
+}
+.h-h1 em { font-style: italic; color: var(--gold2); }
+.h-sub { font-size: 0.78rem; color: var(--grey-lt); max-width: 460px; line-height: 2; margin-bottom: 2.6rem; }
+.h-cta {
+  display: inline-flex; align-items: center; gap: 0.9rem;
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--paper); text-decoration: none;
+  border-bottom: 1px solid var(--gold); padding-bottom: 3px;
+  transition: gap .25s, color .25s;
+}
+.h-cta:hover { color: var(--gold); gap: 1.4rem; }
+.scroll-ind {
+  position: absolute; bottom: 2.5rem; right: 5vw;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--grey-dk);
+}
+.scroll-bar {
+  width: 1px; height: 52px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:.25} 50%{opacity:1} }
+
+/* ══════════════════════════════════════════
+   SECTION 2 — ABOUT   BG: WHITE/PAPER
+══════════════════════════════════════════ */
+#about {
+  background: var(--paper);
+  padding: 9vw 5vw;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 8vw; align-items: center;
+  border-top: 1px solid var(--border-lt);
+}
+/* label on white */
+.lbl-lt {
+  font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold-ink); margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.lbl-lt::before { content: ''; width: 28px; height: 1px; background: var(--gold-ink); }
+/* label on black */
+.lbl-dk {
+  font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.lbl-dk::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+
+.about-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.6rem, 4.5vw, 4rem);
+  font-weight: 300; line-height: 1.12; color: var(--ink);
+}
+.about-h2 em { font-style: italic; color: var(--gold-ink); }
+.about-body-lt { font-size: 0.8rem; color: #555; line-height: 2.1; margin-bottom: 1.5rem; }
+.about-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; font-style: italic; font-weight: 400;
+  color: var(--ink); line-height: 1.6;
+  border-left: 2px solid var(--gold-ink); padding-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+.cta-lt {
+  display: inline-flex; align-items: center; gap: 0.8rem;
+  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold-ink); text-decoration: none;
+  border-bottom: 1px solid rgba(138,111,30,0.4); padding-bottom: 3px;
+  transition: gap .25s;
+}
+.cta-lt:hover { gap: 1.2rem; }
+
+/* ══════════════════════════════════════════
+   SECTION 3 — TICKER   BG: BLACK
+══════════════════════════════════════════ */
+#ticker-sec {
+  background: var(--ink);
+  padding: 8vw 0;
+  border-top: 1px solid var(--border-dk);
+  overflow: hidden;
+}
+.ticker-head { padding: 0 5vw; margin-bottom: 3.5rem; }
+.ticker-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-weight: 300; color: var(--paper); line-height: 1.15;
+}
+.ticker-h2 em { font-style: italic; color: var(--gold2); }
+.ticker-wrap {
+  width: 100%; overflow: hidden;
+  border-top: 1px solid var(--border-dk);
+  border-bottom: 1px solid var(--border-dk);
+}
+.ticker-track {
+  display: flex; width: max-content;
+  animation: tickanim 32s linear infinite;
+}
+.ticker-track:hover { animation-play-state: paused; }
+@keyframes tickanim { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.t-item {
+  display: inline-flex; align-items: center; gap: 1.2rem;
+  padding: 1.8rem 3.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2vw, 1.55rem); font-weight: 400;
+  color: var(--grey-lt); border-right: 1px solid var(--border-dk);
+  cursor: default; text-decoration: none; white-space: nowrap;
+  transition: color .25s, background .25s;
+}
+.t-item:hover { color: var(--paper); background: #1a1a1a; }
+.t-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); opacity: 0.35; flex-shrink: 0; transition: opacity .2s; }
+.t-item:hover .t-dot { opacity: 1; }
+
+/* ══════════════════════════════════════════
+   SECTION 4 — WHEEL   BG: WHITE/PAPER
+══════════════════════════════════════════ */
+#wheel-sec {
+  background: var(--paper);
+  padding: 8vw 5vw;
+  border-top: 1px solid var(--border-lt);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6vw; align-items: center;
+}
+.wheel-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+  font-weight: 300; line-height: 1.15; color: var(--ink); margin-bottom: 2.5rem;
+}
+.wheel-h2 em { font-style: italic; color: var(--gold-ink); }
+.wlist {
+  list-style: none; display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--border-lt);
+}
+.wlist li { border-bottom: 1px solid var(--border-lt); padding: 0.9rem 0; }
+.wlist li:nth-child(odd)  { padding-right: 2rem; border-right: 1px solid var(--border-lt); }
+.wlist li:nth-child(even) { padding-left: 1.5rem; }
+.wlist a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem; font-weight: 400; color: #555;
+  text-decoration: none; line-height: 1.3;
+  display: flex; align-items: center; gap: 0.6rem; transition: color .2s;
+}
+.wlist a::before {
+  content: ''; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--gold-ink); flex-shrink: 0; opacity: 0.4; transition: opacity .2s;
+}
+.wlist a:hover { color: var(--gold-ink); }
+.wlist a:hover::before { opacity: 1; }
+.wheel-right { display: flex; align-items: center; justify-content: center; }
+.wheel-svg-wrap { position: relative; width: min(420px, 90vw); aspect-ratio: 1; }
+.wheel-svg-wrap svg { width: 100%; height: 100%; }
+.wheel-center {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;
+}
+.wc-mono {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3rem); font-weight: 300; color: var(--gold-ink); line-height: 1;
+}
+.wc-sub { font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: #888; margin-top: 0.3rem; }
+
+/* ─── FOOTER  BG: BLACK ─── */
+footer {
+  background: var(--ink); border-top: 1px solid var(--border-dk); padding: 5vw;
+}
+.ft {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 4vw; padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border-dk); margin-bottom: 2rem;
+}
+.fb-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--paper); margin-bottom: 0.4rem; }
+.fb-sub { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.fb-body { font-size: 0.75rem; color: var(--grey-dk); line-height: 1.9; }
+.f-social { display: flex; gap: 0.8rem; margin-top: 1.2rem; }
+.f-social a {
+  width: 36px; height: 36px; border: 1px solid var(--border-dk);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--grey-dk); font-size: 0.65rem; font-weight: 600;
+  text-decoration: none; transition: all .2s;
+}
+.f-social a:hover { border-color: var(--gold); color: var(--gold); }
+.fc h5 { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; font-weight: 600; }
+.fc p, .fc a { font-size: 0.75rem; color: var(--grey-dk); line-height: 2; text-decoration: none; display: block; transition: color .2s; }
+.fc a:hover { color: var(--gold2); }
+.fb2 { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.fb2-copy { font-size: 0.62rem; color: var(--grey-dk); letter-spacing: 0.06em; }
+.fb2-links { display: flex; gap: 2rem; }
+.fb2-links a { font-size: 0.6rem; color: var(--grey-dk); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color .2s; }
+.fb2-links a:hover { color: var(--gold); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  #nav { padding: 1.4rem 5vw; }
+  .nav-links { display: none; }
+  .hbg { display: flex; }
+  #about     { grid-template-columns: 1fr; gap: 2.5rem; padding: 14vw 6vw; }
+  #wheel-sec { grid-template-columns: 1fr; gap: 3rem; padding: 14vw 6vw; }
+  .wheel-right { order: -1; }
+  .ft { grid-template-columns: 1fr; gap: 2.5rem; }
+  .h-circle { width: 300px; height: 300px; right: -80px; }
+}
+@media (max-width: 560px) {
+  #hero { padding: 0 6vw 14vw; }
+  .wlist { grid-template-columns: 1fr; }
+  .wlist li:nth-child(odd)  { border-right: none; padding-right: 0; }
+  .wlist li:nth-child(even) { padding-left: 0; }
+  .fb2 { flex-direction: column; align-items: flex-start; }
+  .disc-box { padding: 2rem; }
+}
+
+/* ─── FADE-UP ─── */
+.fu { opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s ease; }
+.fu.vis { opacity: 1; transform: none; }
+.fd1 { transition-delay: .12s; } .fd2 { transition-delay: .24s; } .fd3 { transition-delay: .38s; }
+</style>
+</head>
+<body>
+
+<!-- DISCLAIMER -->
+<div id="disc">
+  <div class="disc-box">
+    <h4>Disclaimer</h4>
+    <p>This website is hosted by Siji Malayil Associates to serve as a resource for informational purposes only. By accessing this content you agree that you are soliciting information about Siji Malayil Associates. Your accessing this website shall not be construed as rendering legal advice or creating an attorney-client relationship between you and Siji Malayil Associates.</p>
+    <div class="disc-btns">
+      <button class="d-agree" onclick="document.getElementById('disc').style.display='none'">I Agree</button>
+      <a href="https://www.google.com" class="d-disagree">I Disagree</a>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE MENU -->
+<div id="mm">
+  <button class="mm-x" onclick="document.getElementById('mm').classList.remove('open')">✕</button>
+  <a href="#hero"       onclick="document.getElementById('mm').classList.remove('open')">Home</a>
+  <a href="#about"      onclick="document.getElementById('mm').classList.remove('open')">About Us</a>
+  <a href="#ticker-sec" onclick="document.getElementById('mm').classList.remove('open')">Practice Areas</a>
+  <a href="#wheel-sec"  onclick="document.getElementById('mm').classList.remove('open')">Our Expertise</a>
+  <a href="#contact"    onclick="document.getElementById('mm').classList.remove('open')">Contact Us</a>
+</div>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <a href="#hero" class="nav-brand">
+    <div class="nav-mono">SMA</div>
+    <div class="nav-vline"></div>
+    <div class="nav-wm">
+      Siji Malayil Associates
+      <span>Advocates &amp; Legal Consultants</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#ticker-sec">Practice Areas</a></li>
+    <li><a href="#wheel-sec">Our Expertise</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+  </ul>
+  <button class="hbg" onclick="document.getElementById('mm').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ S1: HERO  ●  BLACK ══ -->
+<section id="hero">
+  <div class="h-grid"></div>
+  <div class="h-vig"></div>
+  <div class="h-rule"></div>
+  <div class="h-circle"></div>
+  <div class="h-content">
+    <div class="h-tag fu fd1">Advocates &amp; Legal Consultants · Bengaluru</div>
+    <h1 class="h-h1 fu fd2">
+      Trusted &amp; <em>wise</em><br>
+      counsel for the<br>
+      contemporary world
+    </h1>
+    <p class="h-sub fu fd2">A full-service law firm offering unique solutions to a spectrum of legal issues, with an unwavering client-focused approach.</p>
+    <a href="tel:+919844104360" class="h-cta fu fd3">
+      For Appointments &amp; Urgent Queries
+      <svg width="18" height="10" viewBox="0 0 18 10" fill="none">
+        <path d="M1 5h16M12 1l5 4-5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+  <div class="scroll-ind">
+    <div class="scroll-bar"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ══ S2: ABOUT  ○  WHITE ══ -->
+<section id="about">
+  <div class="fu">
+    <div class="lbl-lt">About Us</div>
+    <h2 class="about-h2">
+      A leading full&#8209;service<br>
+      law firm based in<br>
+      <em>Bengaluru, India</em>
+    </h2>
+  </div>
+  <div class="fu fd1">
+    <div class="about-quote">"We believe in the concept of early, expeditious &amp; cost-effective disposal of all disputes."</div>
+    <p class="about-body-lt">We pride ourselves on our commitment to excellence, our innovative approach to legal challenges, and our unwavering dedication to client satisfaction. Our core team is proficient in handling all intricacies relating to their areas of practice, for individual as well as corporate clients.</p>
+    <p class="about-body-lt">We collaborate with clients to understand their needs and guide them with the best legal advice — using our experience, expertise, knowledge and skills — to protect your interests at every step.</p>
+    <a href="#ticker-sec" class="cta-lt">
+      Our Practice Areas
+      <svg width="16" height="9" viewBox="0 0 16 9" fill="none">
+        <path d="M1 4.5h14M10 1l5 3.5-5 3.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- ══ S3: TICKER  ●  BLACK ══ -->
+<section id="ticker-sec">
+  <div class="ticker-head fu">
+    <div class="lbl-dk">Our Expertise</div>
+    <h2 class="ticker-h2">Practice Areas <em>We Handle</em></h2>
+  </div>
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Criminal Law</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Civil Law</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Constitutional Law</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Family Law</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>NDPS Matters</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Prevention of Money Laundering</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Alternative Dispute Resolution</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Non-Litigation</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Service Matters</a>
+      <!-- duplicate -->
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Criminal Law</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Civil Law</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Constitutional Law</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Family Law</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>NDPS Matters</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Prevention of Money Laundering</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Alternative Dispute Resolution</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Non-Litigation</a>
+      <a class="t-item" href="#wheel-sec"><span class="t-dot"></span>Service Matters</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ S4: WHEEL  ○  WHITE ══ -->
+<section id="wheel-sec">
+  <div class="wheel-left fu">
+    <div class="lbl-lt">Our Practice Areas</div>
+    <h2 class="wheel-h2">Areas of<br><em>Legal Practice</em></h2>
+    <ul class="wlist">
+      <li><a href="#">Criminal Law</a></li>
+      <li><a href="#">Civil Law</a></li>
+      <li><a href="#">Constitutional Law</a></li>
+      <li><a href="#">Family Law</a></li>
+      <li><a href="#">NDPS Matters</a></li>
+      <li><a href="#">Money Laundering</a></li>
+      <li><a href="#">Dispute Resolution</a></li>
+      <li><a href="#">Non-Litigation</a></li>
+      <li><a href="#">Service Matters</a></li>
+    </ul>
+  </div>
+  <div class="wheel-right fu fd1">
+    <div class="wheel-svg-wrap">
+      <svg viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- rings -->
+        <circle cx="210" cy="210" r="200" stroke="rgba(138,111,30,0.15)" stroke-width="1"/>
+        <circle cx="210" cy="210" r="168" stroke="rgba(138,111,30,0.09)" stroke-width="1"/>
+        <!-- inner core -->
+        <circle cx="210" cy="210" r="68"  fill="#ede9e0" stroke="rgba(138,111,30,0.35)" stroke-width="1.5"/>
+        <!-- 9 segments -->
+        <path d="M210 210 L210 10 A200 200 0 0 1 382.1 110 Z"    fill="rgba(138,111,30,0.04)" stroke="rgba(138,111,30,0.18)" stroke-width="1"/>
+        <path d="M210 210 L382.1 110 A200 200 0 0 1 382.1 310 Z" fill="rgba(138,111,30,0.02)" stroke="rgba(138,111,30,0.18)" stroke-width="1"/>
+        <path d="M210 210 L382.1 310 A200 200 0 0 1 268.2 399 Z" fill="rgba(138,111,30,0.04)" stroke="rgba(138,111,30,0.18)" stroke-width="1"/>
+        <path d="M210 210 L268.2 399 A200 200 0 0 1 151.8 399 Z" fill="rgba(138,111,30,0.02)" stroke="rgba(138,111,30,0.18)" stroke-width="1"/>
+        <path d="M210 210 L151.8 399 A200 200 0 0 1 37.9 310 Z"  fill="rgba(138,111,30,0.04)" stroke="rgba(138,111,30,0.18)" stroke-width="1"/>
+        <path d="M210 210 L37.9 310  A200 200 0 0 1 37.9 110 Z"  fill="rgba(138,111,30,0.02)" stroke="rgba(138,111,30,0.18)" stroke-width="1"/>
+        <path d="M210 210 L37.9 110  A200 200 0 0 1 151.8 21 Z"  fill="rgba(138,111,30,0.04)" stroke="rgba(138,111,30,0.18)" stroke-width="1"/>
+        <path d="M210 210 L151.8 21  A200 200 0 0 1 268.2 21 Z"  fill="rgba(138,111,30,0.02)" stroke="rgba(138,111,30,0.18)" stroke-width="1"/>
+        <path d="M210 210 L268.2 21  A200 200 0 0 1 210 10 Z"    fill="rgba(138,111,30,0.04)" stroke="rgba(138,111,30,0.18)" stroke-width="1"/>
+        <!-- dots -->
+        <circle cx="210" cy="11"  r="3.5" fill="#8a6f1e" opacity="0.7"/>
+        <circle cx="382" cy="111" r="3.5" fill="#8a6f1e" opacity="0.7"/>
+        <circle cx="382" cy="309" r="3.5" fill="#8a6f1e" opacity="0.7"/>
+        <circle cx="268" cy="398" r="3.5" fill="#8a6f1e" opacity="0.7"/>
+        <circle cx="152" cy="398" r="3.5" fill="#8a6f1e" opacity="0.7"/>
+        <circle cx="38"  cy="309" r="3.5" fill="#8a6f1e" opacity="0.7"/>
+        <circle cx="38"  cy="111" r="3.5" fill="#8a6f1e" opacity="0.7"/>
+        <circle cx="152" cy="22"  r="3.5" fill="#8a6f1e" opacity="0.7"/>
+        <circle cx="268" cy="22"  r="3.5" fill="#8a6f1e" opacity="0.7"/>
+        <!-- labels -->
+        <text transform="rotate(-90,210,210)" x="210" y="52" text-anchor="middle" fill="rgba(11,11,11,0.5)"  font-family="Montserrat,sans-serif" font-size="8.5" letter-spacing="1.5" font-weight="500">CRIMINAL</text>
+        <text transform="rotate(-50,210,210)" x="210" y="52" text-anchor="middle" fill="rgba(11,11,11,0.5)"  font-family="Montserrat,sans-serif" font-size="8.5" letter-spacing="1.5" font-weight="500">CIVIL</text>
+        <text transform="rotate(-10,210,210)" x="210" y="52" text-anchor="middle" fill="rgba(11,11,11,0.5)"  font-family="Montserrat,sans-serif" font-size="7"   letter-spacing="1"   font-weight="500">CONSTITUTIONAL</text>
+        <text transform="rotate(30,210,210)"  x="210" y="52" text-anchor="middle" fill="rgba(11,11,11,0.5)"  font-family="Montserrat,sans-serif" font-size="8.5" letter-spacing="1.5" font-weight="500">FAMILY</text>
+        <text transform="rotate(70,210,210)"  x="210" y="52" text-anchor="middle" fill="rgba(11,11,11,0.5)"  font-family="Montserrat,sans-serif" font-size="8.5" letter-spacing="1.5" font-weight="500">NDPS</text>
+        <text transform="rotate(110,210,210)" x="210" y="52" text-anchor="middle" fill="rgba(11,11,11,0.5)"  font-family="Montserrat,sans-serif" font-size="7"   letter-spacing="1"   font-weight="500">MONEY LAUNDERING</text>
+        <text transform="rotate(150,210,210)" x="210" y="52" text-anchor="middle" fill="rgba(11,11,11,0.5)"  font-family="Montserrat,sans-serif" font-size="8.5" letter-spacing="1.5" font-weight="500">ADR</text>
+        <text transform="rotate(190,210,210)" x="210" y="52" text-anchor="middle" fill="rgba(11,11,11,0.5)"  font-family="Montserrat,sans-serif" font-size="7"   letter-spacing="1"   font-weight="500">NON-LITIGATION</text>
+        <text transform="rotate(230,210,210)" x="210" y="52" text-anchor="middle" fill="rgba(11,11,11,0.5)"  font-family="Montserrat,sans-serif" font-size="7"   letter-spacing="1"   font-weight="500">SERVICE MATTERS</text>
+      </svg>
+      <div class="wheel-center">
+        <span class="wc-mono">SMA</span>
+        <span class="wc-sub">9 Practice Areas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER  ●  BLACK -->
+<footer id="contact">
+  <div class="ft">
+    <div>
+      <div class="fb-name">Siji Malayil Associates</div>
+      <div class="fb-sub">Advocates &amp; Legal Consultants</div>
+      <p class="fb-body">A full-service law firm based in Bengaluru, offering holistic and fully integrated legal solutions with an unwavering client-focused approach.</p>
+      <div class="f-social">
+        <a href="https://www.linkedin.com/company/siji-malayil-associates/" target="_blank">in</a>
+        <a href="https://wa.me/919844104360" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="fc">
+      <h5>Bangalore</h5>
+      <p>S-510, 5th Floor, Manipal Centre,</p>
+      <p>South Block, M.G. Road,</p>
+      <p>Bangalore, Karnataka – 560 042</p>
+      <p style="margin-top:0.4rem;color:#444;font-size:0.68rem;">2 min walk · Trinity Metro Station</p>
+      <a href="tel:+919980554360" style="margin-top:0.8rem;">+91 998 055 4360</a>
+      <a href="tel:+919844104360">+91 984 410 4360</a>
+      <a href="tel:+918025578751">+91 80 2557 8751</a>
+    </div>
+    <div class="fc">
+      <h5>Information</h5>
+      <a href="mailto:contact@sijimalayil.com">contact@sijimalayil.com</a>
+      <a href="#about"      style="margin-top:0.6rem;">About the Firm</a>
+      <a href="#ticker-sec">Practice Areas</a>
+      <a href="#wheel-sec">Our Expertise</a>
+      <a href="#">Careers</a>
+      <a href="#">Legal &amp; Regulatory</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+  <div class="fb2">
+    <span class="fb2-copy">© 2024 Siji Malayil Associates. All rights reserved.</span>
+    <div class="fb2-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('stuck', window.scrollY > 60);
+  });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fu').forEach(el => io.observe(el));
+  setTimeout(() => {
+    document.querySelectorAll('#hero .fu').forEach(el => el.classList.add('vis'));
+  }, 250);
+</script>
+</body>
+</html>
