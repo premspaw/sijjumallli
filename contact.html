@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us – Siji Malayil Associates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --ink:      #000000;
+  --ink2:     #111111;
+  --paper:    #ffffff;
+  --paper2:   #f9f8f6;
+  --gold:     #73001D;      /* Crimson Primary */
+  --gold2:    #73001D;
+  --gold-ink: #73001D;
+  --grey-dk:  #434345;      /* Charcoal Body Text */
+  --grey-lt:  #7a7a7a;      /* Muted Text Grey */
+  --border-dk: rgba(115, 0, 29, 0.12);
+  --border-lt: rgba(0, 0, 0, 0.08);
+}
+
+body {
+  background: var(--paper);
+  color: var(--grey-dk);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* ─── NAVBAR (Matches index.html) ─── */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 2rem 5vw; transition: padding .35s, background .35s, border .35s;
+  background: #000000;
+  height: 70px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+#nav.stuck {
+  padding: 1.1rem 5vw;
+  background: #000000;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+}
+.nav-brand { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; }
+.nav-mono {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.55rem; font-weight: 500;
+  color: var(--gold); line-height: 1; letter-spacing: 0.04em;
+}
+.nav-vline { width: 1px; height: 26px; background: rgba(255, 255, 255, 0.2); }
+.nav-wm {
+  font-family: 'Noto Serif', serif;
+  font-size: 0.9rem; font-weight: 400; color: #ffffff; letter-spacing: 0.06em; line-height: 1.3;
+}
+.nav-wm span {
+  display: block; font-size: 0.6rem;
+  font-family: 'Poppins', sans-serif; font-weight: 300;
+  letter-spacing: 0.18em; text-transform: uppercase; color: #a0a0a0;
+}
+.nav-links { display: flex; gap: 2.8rem; list-style: none; }
+.nav-links a {
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+  color: #d1d1d1; text-decoration: none; transition: color .2s; position: relative;
+  font-family: 'Poppins', sans-serif;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -6px; left: 0; right: 0;
+  height: 2px; background: var(--gold);
+  transform: scaleX(0); transform-origin: center; transition: transform .25s;
+}
+.nav-links a:hover { color: #ffffff; }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+/* ─── DROPDOWN MENU ─── */
+.nav-links li {
+  position: relative;
+}
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 2px solid var(--gold);
+  border-radius: 4px;
+  width: 250px;
+  padding: 0.8rem 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+}
+.nav-links li:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown a {
+  font-size: 0.7rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: none !important;
+  color: #c0c0c0 !important;
+  padding: 0.6rem 1.5rem;
+  width: 100%;
+  display: block;
+  transition: all 0.25s !important;
+  text-align: left;
+}
+.dropdown a::after {
+  display: none !important;
+}
+.dropdown a:hover {
+  background: var(--gold);
+  color: #ffffff !important;
+  padding-left: 1.8rem;
+}
+.mm-sub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: -1.2rem;
+  margin-bottom: 0.5rem;
+}
+.mm-sub a {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  color: #a0a0a0 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+.mm-sub a:hover {
+  color: var(--gold) !important;
+}
+
+.hbg { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+.hbg span { display: block; width: 22px; height: 1px; background: #ffffff; transition: all .3s; }
+
+/* ─── MOBILE MENU ─── */
+#mm {
+  display: none; position: fixed; inset: 0; z-index: 190;
+  background: #000000; flex-direction: column; align-items: center; justify-content: center; gap: 2.2rem;
+}
+#mm.open { display: flex; }
+.mm-x { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; color: #ffffff; font-size: 1.4rem; cursor: pointer; }
+#mm a { font-family: 'Noto Serif', serif; font-size: 2.2rem; font-weight: 300; color: #ffffff; text-decoration: none; letter-spacing: 0.05em; transition: color .2s; }
+#mm a:hover { color: var(--gold); }
+
+/* ─── SUB-HERO SECTION ─── */
+#sub-hero {
+  height: 40vh;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0 10vw;
+  color: #ffffff;
+  margin-top: 70px;
+}
+.sub-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.45));
+  z-index: 1;
+}
+.sub-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+.breadcrumbs {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #c0c0c0;
+  margin-bottom: 1rem;
+}
+.breadcrumbs a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.breadcrumbs a:hover {
+  color: var(--gold);
+}
+.sub-hero-title {
+  font-family: 'Noto Serif', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+  border-left: 5px solid var(--gold);
+  padding-left: 15px;
+}
+.sub-hero-sub {
+  font-size: 0.95rem;
+  color: #e0e0e0;
+  max-width: 650px;
+  line-height: 1.6;
+}
+
+/* ─── TWO-COLUMN CONTENT GRID ─── */
+.sub-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4vw;
+  padding: 80px 10vw;
+  background: var(--paper2);
+  align-items: start;
+}
+.sub-main-content {
+  background: var(--paper);
+  border: 1px solid var(--border-lt);
+  border-radius: 4px;
+  padding: 3.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.intro-text {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #000000;
+  font-style: italic;
+  border-bottom: 1px dashed var(--border-lt);
+  padding-bottom: 1.5rem;
+  text-align: justify;
+}
+
+/* Contact Specific Layout */
+.contact-section h3 {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-lt);
+  padding-bottom: 0.4rem;
+}
+.address-block {
+  font-size: 0.95rem;
+  color: #000000;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+.address-block strong {
+  display: block;
+  font-size: 1.15rem;
+  font-family: 'Noto Serif', serif;
+  margin-bottom: 0.4rem;
+  color: var(--gold);
+  font-weight: 500;
+}
+.landmark {
+  font-size: 0.78rem;
+  color: var(--grey-lt);
+  margin-top: 0.3rem;
+  font-weight: 500;
+}
+
+/* Communication Channels visual blocks */
+.comm-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.comm-card {
+  border: 1px solid var(--border-lt);
+  background: var(--paper2);
+  border-radius: 4px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.comm-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  box-shadow: 0 6px 16px rgba(115,0,29,0.06);
+}
+.comm-card span {
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grey-lt);
+  font-weight: 600;
+}
+.comm-card a {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.comm-card a:hover {
+  color: var(--gold);
+}
+.comm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.2rem;
+  background: var(--gold);
+  color: #ffffff !important;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s;
+  align-self: flex-start;
+  margin-top: 0.4rem;
+}
+.comm-btn:hover {
+  background: #a01030;
+}
+.comm-btn-wa {
+  background: #25D366;
+}
+.comm-btn-wa:hover {
+  background: #20ba5a;
+}
+.hours-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.hours-list li {
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed var(--border-lt);
+  padding-bottom: 0.4rem;
+}
+.hours-list li span {
+  font-weight: 500;
+  color: #000000;
+}
+
+/* Sidebar with Map Frame */
+.map-card-wrap {
+  border: 1px solid var(--border-lt);
+  background: var(--paper);
+  border-radius: 4px;
+  padding: 1.2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  width: 100%;
+}
+.map-card-header {
+  margin-bottom: 1.2rem;
+}
+.map-card-header h4 {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 0.2rem;
+}
+.map-card-header p {
+  font-size: 0.78rem;
+  color: var(--grey-lt);
+}
+
+/* ─── FLOATING WHATSAPP WIDGET ─── */
+.wa-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 54px;
+  height: 54px;
+  background: #25D366;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+  z-index: 999;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.wa-float:hover {
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.6);
+}
+.wa-float svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+/* ─── FOOTER (Matches index.html) ─── */
+footer {
+  background: var(--paper); border-top: 1px solid var(--border-lt); padding: 55px 10vw 35px;
+}
+.ft {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 4vw; padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border-lt); margin-bottom: 2rem;
+}
+.fb-name { font-family: 'Noto Serif', serif; font-size: 1.6rem; font-weight: 500; color: var(--gold); margin-bottom: 0.4rem; }
+.fb-sub { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey-dk); margin-bottom: 1rem; font-family: 'Poppins', sans-serif; }
+.fb-body { font-size: 0.8rem; color: var(--grey-lt); line-height: 1.9; font-family: 'Poppins', sans-serif; text-align: justify; }
+.f-social { display: flex; gap: 0.8rem; margin-top: 1.2rem; }
+.f-social a {
+  width: 36px; height: 36px; border: 1px solid var(--border-lt);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--grey-dk); font-size: 0.75rem; font-weight: 600;
+  text-decoration: none; transition: all .2s;
+  font-family: 'Poppins', sans-serif;
+}
+.f-social a:hover { border-color: var(--gold); color: var(--gold); }
+.fc h5 { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; font-weight: 600; font-family: 'Poppins', sans-serif; }
+.fc p, .fc a { font-size: 0.8rem; color: var(--grey-dk); line-height: 2; text-decoration: none; display: block; transition: color .2s; font-family: 'Poppins', sans-serif; }
+.fc a:hover { color: var(--gold); }
+.fb2 { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.fb2-copy { font-size: 0.7rem; color: var(--grey-lt); letter-spacing: 0.06em; font-family: 'Poppins', sans-serif; }
+.fb2-links { display: flex; gap: 2rem; }
+.fb2-links a { font-size: 0.65rem; color: var(--grey-lt); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color .2s; font-family: 'Poppins', sans-serif; }
+.fb2-links a:hover { color: var(--gold); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  #nav { padding: 1.4rem 5vw; }
+  .nav-links { display: none; }
+  .hbg { display: flex; }
+  .sub-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 40px 6vw;
+  }
+  .sub-main-content {
+    padding: 2.2rem;
+  }
+  .ft { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 560px) {
+  .fb2 { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div id="mm">
+  <button class="mm-x" onclick="document.getElementById('mm').classList.remove('open')">✕</button>
+  <a href="index.html#hero"       onclick="document.getElementById('mm').classList.remove('open')">Home</a>
+  <a href="index.html#about"      onclick="document.getElementById('mm').classList.remove('open')">About Us</a>
+  <a href="index.html#wheel-sec"  onclick="document.getElementById('mm').classList.remove('open')">Our Expertise</a>
+  <div class="mm-sub">
+    <a href="criminal-law.html">Criminal Law</a>
+    <a href="civil-law.html">Civil Law</a>
+    <a href="constitutional-law.html">Constitutional Law</a>
+    <a href="family-law.html">Family Law</a>
+    <a href="ndps-matters.html">NDPS Matters</a>
+    <a href="money-laundering.html">Money Laundering</a>
+    <a href="dispute-resolution.html">Dispute Resolution</a>
+    <a href="non-litigation.html">Non-Litigation</a>
+    <a href="service-matters.html">Service Matters</a>
+  </div>
+  <a href="index.html#team-sec"   onclick="document.getElementById('mm').classList.remove('open')">Our Team</a>
+  <a href="careers.html"          onclick="document.getElementById('mm').classList.remove('open')">Careers</a>
+  <a href="contact.html"          onclick="document.getElementById('mm').classList.remove('open')">Contact Us</a>
+</div>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <a href="index.html#hero" class="nav-brand">
+    <img src="logo.png" alt="Siji Malayil Associates Logo" style="height: 42px; width: auto; display: block;">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About Us</a></li>
+    <li>
+      <a href="index.html#wheel-sec">Our Expertise</a>
+      <div class="dropdown">
+        <a href="criminal-law.html">Criminal Law</a>
+        <a href="civil-law.html">Civil Law</a>
+        <a href="constitutional-law.html">Constitutional Law</a>
+        <a href="family-law.html">Family Law</a>
+        <a href="ndps-matters.html">NDPS Matters</a>
+        <a href="money-laundering.html">Money Laundering</a>
+        <a href="dispute-resolution.html">Dispute Resolution</a>
+        <a href="non-litigation.html">Non-Litigation</a>
+        <a href="service-matters.html">Service Matters</a>
+      </div>
+    </li>
+    <li><a href="index.html#team-sec">Our Team</a></li>
+    <li><a href="careers.html">Careers</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+  </ul>
+  <button class="hbg" onclick="document.getElementById('mm').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- SUB-HERO -->
+<section id="sub-hero" style="background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.45)), url('./legal_careers.png') center center / cover no-repeat;">
+  <div class="sub-hero-overlay"></div>
+  <div class="sub-hero-content">
+    <div class="breadcrumbs"><a href="index.html">Home</a> &gt; Contact Us</div>
+    <h1 class="sub-hero-title">Contact Our Chambers</h1>
+    <p class="sub-hero-sub">Located in the premium business and commercial hub on M.G. Road, Bengaluru.</p>
+  </div>
+</section>
+
+<!-- CONTENT SECTION -->
+<section class="sub-container">
+  <div class="sub-main-content">
+    <p class="intro-text">"We collaborate with our clients to understand their needs and guide them with the best legal advice — protecting their liberty and interests at every step."</p>
+    
+    <div class="contact-section">
+      <h3>Office Chambers</h3>
+      <div class="address-block">
+        <strong>Siji Malayil Associates</strong>
+        S-510, 5th Floor, Manipal Centre,<br>
+        South Block, M.G. Road,<br>
+        Bangalore, Karnataka – 560 042<br>
+        <p class="landmark">📍 Landmark: 2 minutes walk from Trinity Metro Station</p>
+      </div>
+      
+      <h3>Direct Communication</h3>
+      <div class="comm-grid">
+        <!-- Telephones -->
+        <div class="comm-card">
+          <span>Call Directly</span>
+          <a href="tel:+919844104360">+91 984 410 4360</a>
+          <a href="tel:+919980554360">+91 998 055 4360</a>
+          <a href="tel:+918025578751" style="font-size:0.95rem;">Landline: +91 80 2557 8751</a>
+        </div>
+        
+        <!-- WhatsApp -->
+        <div class="comm-card">
+          <span>WhatsApp Quick Chat</span>
+          <p style="font-size:0.85rem;margin-bottom:0.2rem;">Connect instantly with our legal consultants regarding urgent consultations.</p>
+          <a href="https://wa.me/919844104360" target="_blank" class="comm-btn comm-btn-wa">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;margin-right:0.3rem;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Send WhatsApp Message
+          </a>
+        </div>
+        
+        <!-- Email -->
+        <div class="comm-card">
+          <span>Email Address</span>
+          <a href="mailto:contact@sijimalayil.com">contact@sijimalayil.com</a>
+          <a href="mailto:contact@sijimalayil.com" class="comm-btn">Send Email Inquiry</a>
+        </div>
+      </div>
+      
+      <h3 style="margin-top:1.8rem;">Chamber Hours</h3>
+      <ul class="hours-list">
+        <li>Monday – Friday: <span>9:00 AM – 7:30 PM</span></li>
+        <li>Saturday: <span>9:00 AM – 7:30 PM</span></li>
+        <li>Sunday &amp; Public Holidays: <span>Closed (Except Urgent Bail/NDPS matters)</span></li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- RIGHT COLUMN MAP CARD -->
+  <aside class="sub-sidebar">
+    <div class="map-card-wrap">
+      <div class="map-card-header">
+        <h4>Interactive Office Map</h4>
+        <p>Manipal Centre, M.G. Road, Bangalore</p>
+      </div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.9620070123533!2d77.6186847!3d12.9742618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1680d92ad921%3A0xbc4e2ef3077759a2!2sManipal%20Centre!5e0!3m2!1sen!2sin!4v1716729000000!5m2!1sen!2sin" width="100%" height="450" style="border:0; border-radius: 4px; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </aside>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="ft">
+    <div>
+      <div class="fb-name">Siji Malayil Associates</div>
+      <div class="fb-sub">Advocates &amp; Legal Consultants</div>
+      <p class="fb-body">A full-service law firm based in Bengaluru, offering holistic and fully integrated legal solutions with an unwavering client-focused approach.</p>
+      <div class="f-social">
+        <a href="https://www.linkedin.com/company/siji-malayil-associates/" target="_blank">in</a>
+        <a href="https://wa.me/919844104360" target="_blank">w</a>
+      </div>
+    </div>
+    <div class="fc">
+      <h5>Bangalore</h5>
+      <p>S-510, 5th Floor, Manipal Centre,</p>
+      <p>South Block, M.G. Road,</p>
+      <p>Bangalore, Karnataka – 560 042</p>
+      <p style="margin-top:0.4rem;color:#444;font-size:0.68rem;">2 min walk · Trinity Metro Station</p>
+      <a href="tel:+919980554360" style="margin-top:0.8rem;">+91 998 055 4360</a>
+      <a href="tel:+918025578751">+91 80 2557 8751</a>
+      <a href="mailto:contact@sijimalayil.com">+91 984 410 4360</a>
+    </div>
+    <div class="fc">
+      <h5>Information</h5>
+      <a href="mailto:contact@sijimalayil.com">contact@sijimalayil.com</a>
+      <a href="index.html#about"      style="margin-top:0.6rem;">About the Firm</a>
+      <a href="index.html#ticker-sec">Practice Areas</a>
+      <a href="index.html#wheel-sec">Our Expertise</a>
+      <a href="index.html#team-sec">Our Team</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+  <div class="fb2">
+    <span class="fb2-copy">© 2024 Siji Malayil Associates. All rights reserved.</span>
+    <div class="fb2-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp Widget -->
+<a href="https://wa.me/919844104360" class="wa-float" target="_blank" aria-label="Message Siji Malayil Associates on WhatsApp">
+  <svg viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('stuck', window.scrollY > 60);
+  });
+</script>
+</body>
+</html>

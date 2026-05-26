@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careers &amp; Internships – Siji Malayil Associates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --ink:      #000000;
+  --ink2:     #111111;
+  --paper:    #ffffff;
+  --paper2:   #f9f8f6;
+  --gold:     #73001D;      /* Crimson Primary */
+  --gold2:    #73001D;
+  --gold-ink: #73001D;
+  --grey-dk:  #434345;      /* Charcoal Body Text */
+  --grey-lt:  #7a7a7a;      /* Muted Text Grey */
+  --border-dk: rgba(115, 0, 29, 0.12);
+  --border-lt: rgba(0, 0, 0, 0.08);
+}
+
+body {
+  background: var(--paper);
+  color: var(--grey-dk);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* ─── NAVBAR (Matches index.html) ─── */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 2rem 5vw; transition: padding .35s, background .35s, border .35s;
+  background: #000000;
+  height: 70px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+#nav.stuck {
+  padding: 1.1rem 5vw;
+  background: #000000;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+}
+.nav-brand { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; }
+.nav-mono {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.55rem; font-weight: 500;
+  color: var(--gold); line-height: 1; letter-spacing: 0.04em;
+}
+.nav-vline { width: 1px; height: 26px; background: rgba(255, 255, 255, 0.2); }
+.nav-wm {
+  font-family: 'Noto Serif', serif;
+  font-size: 0.9rem; font-weight: 400; color: #ffffff; letter-spacing: 0.06em; line-height: 1.3;
+}
+.nav-wm span {
+  display: block; font-size: 0.6rem;
+  font-family: 'Poppins', sans-serif; font-weight: 300;
+  letter-spacing: 0.18em; text-transform: uppercase; color: #a0a0a0;
+}
+.nav-links { display: flex; gap: 2.8rem; list-style: none; }
+.nav-links a {
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+  color: #d1d1d1; text-decoration: none; transition: color .2s; position: relative;
+  font-family: 'Poppins', sans-serif;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -6px; left: 0; right: 0;
+  height: 2px; background: var(--gold);
+  transform: scaleX(0); transform-origin: center; transition: transform .25s;
+}
+.nav-links a:hover { color: #ffffff; }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+/* ─── DROPDOWN MENU ─── */
+.nav-links li {
+  position: relative;
+}
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 2px solid var(--gold);
+  border-radius: 4px;
+  width: 250px;
+  padding: 0.8rem 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+}
+.nav-links li:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown a {
+  font-size: 0.7rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: none !important;
+  color: #c0c0c0 !important;
+  padding: 0.6rem 1.5rem;
+  width: 100%;
+  display: block;
+  transition: all 0.25s !important;
+  text-align: left;
+}
+.dropdown a::after {
+  display: none !important;
+}
+.dropdown a:hover {
+  background: var(--gold);
+  color: #ffffff !important;
+  padding-left: 1.8rem;
+}
+.mm-sub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: -1.2rem;
+  margin-bottom: 0.5rem;
+}
+.mm-sub a {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  color: #a0a0a0 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+.mm-sub a:hover {
+  color: var(--gold) !important;
+}
+
+.hbg { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+.hbg span { display: block; width: 22px; height: 1px; background: #ffffff; transition: all .3s; }
+
+/* ─── MOBILE MENU ─── */
+#mm {
+  display: none; position: fixed; inset: 0; z-index: 190;
+  background: #000000; flex-direction: column; align-items: center; justify-content: center; gap: 2.2rem;
+}
+#mm.open { display: flex; }
+.mm-x { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; color: #ffffff; font-size: 1.4rem; cursor: pointer; }
+#mm a { font-family: 'Noto Serif', serif; font-size: 2.2rem; font-weight: 300; color: #ffffff; text-decoration: none; letter-spacing: 0.05em; transition: color .2s; }
+#mm a:hover { color: var(--gold); }
+
+/* ─── SUB-HERO SECTION ─── */
+#sub-hero {
+  height: 40vh;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0 10vw;
+  color: #ffffff;
+  margin-top: 70px;
+}
+.sub-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.45));
+  z-index: 1;
+}
+.sub-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+.breadcrumbs {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #c0c0c0;
+  margin-bottom: 1rem;
+}
+.breadcrumbs a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.breadcrumbs a:hover {
+  color: var(--gold);
+}
+.sub-hero-title {
+  font-family: 'Noto Serif', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+  border-left: 5px solid var(--gold);
+  padding-left: 15px;
+}
+.sub-hero-sub {
+  font-size: 0.95rem;
+  color: #e0e0e0;
+  max-width: 650px;
+  line-height: 1.6;
+}
+
+/* ─── TWO-COLUMN CONTENT GRID ─── */
+.sub-container {
+  display: grid;
+  grid-template-columns: 1.45fr 0.55fr;
+  gap: 4vw;
+  padding: 80px 10vw;
+  background: var(--paper2);
+  align-items: start;
+}
+.sub-main-content {
+  background: var(--paper);
+  border: 1px solid var(--border-lt);
+  border-radius: 4px;
+  padding: 3.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+.intro-text {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #000000;
+  margin-bottom: 1.8rem;
+  font-style: italic;
+  border-bottom: 1px dashed var(--border-lt);
+  padding-bottom: 1.5rem;
+  text-align: justify;
+}
+.details-text {
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: var(--grey-dk);
+  margin-bottom: 2.2rem;
+  text-align: justify;
+}
+.details-text p {
+  margin-bottom: 1.2rem;
+}
+.sub-main-content h3 {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+  margin-top: 1.8rem;
+  border-bottom: 1px solid var(--border-lt);
+  padding-bottom: 0.4rem;
+}
+.focus-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  margin-top: 1rem;
+}
+.focus-list li {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--grey-dk);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+.focus-list li::before {
+  content: '✦';
+  color: var(--gold);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.sub-quote {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: #000000;
+  border-left: 3px solid var(--gold);
+  padding-left: 1.5rem;
+  margin-top: 2.5rem;
+  text-align: justify;
+}
+
+/* ─── SIDEBAR CAREERS INTERACTIVE CARD ─── */
+.sub-sidebar {
+  position: sticky;
+  top: 90px;
+}
+.sidebar-card {
+  background: var(--gold);
+  color: #ffffff;
+  border-radius: 4px;
+  padding: 2.2rem;
+  box-shadow: 0 8px 24px rgba(115,0,29,0.15);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.sidebar-card h3 {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.6rem;
+}
+.sidebar-card p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.sidebar-card hr {
+  border: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+  margin-bottom: 1.5rem;
+}
+
+/* Application Form Elements */
+.app-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.form-grp {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.form-grp label {
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  font-weight: 600;
+}
+.form-grp select,
+.form-grp input {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: #ffffff;
+  padding: 0.65rem 0.8rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  transition: border-color 0.2s, background-color 0.2s;
+  outline: none;
+  width: 100%;
+}
+.form-grp select:focus,
+.form-grp input:focus {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+}
+.form-grp option {
+  background: #73001D;
+  color: #ffffff;
+}
+.sb-btn {
+  display: block;
+  width: 100%;
+  padding: 0.85rem;
+  background: #ffffff;
+  color: var(--gold);
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-top: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.sb-btn:hover {
+  background: #f4f4f4;
+  color: var(--gold2);
+}
+
+/* ─── FOOTER (Matches index.html) ─── */
+footer {
+  background: var(--paper); border-top: 1px solid var(--border-lt); padding: 55px 10vw 35px;
+}
+.ft {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 4vw; padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border-lt); margin-bottom: 2rem;
+}
+.fb-name { font-family: 'Noto Serif', serif; font-size: 1.6rem; font-weight: 500; color: var(--gold); margin-bottom: 0.4rem; }
+.fb-sub { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey-dk); margin-bottom: 1rem; font-family: 'Poppins', sans-serif; }
+.fb-body { font-size: 0.8rem; color: var(--grey-lt); line-height: 1.9; font-family: 'Poppins', sans-serif; text-align: justify; }
+.f-social { display: flex; gap: 0.8rem; margin-top: 1.2rem; }
+.f-social a {
+  width: 36px; height: 36px; border: 1px solid var(--border-lt);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--grey-dk); font-size: 0.75rem; font-weight: 600;
+  text-decoration: none; transition: all .2s;
+  font-family: 'Poppins', sans-serif;
+}
+.f-social a:hover { border-color: var(--gold); color: var(--gold); }
+.fc h5 { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; font-weight: 600; font-family: 'Poppins', sans-serif; }
+.fc p, .fc a { font-size: 0.8rem; color: var(--grey-dk); line-height: 2; text-decoration: none; display: block; transition: color .2s; font-family: 'Poppins', sans-serif; }
+.fc a:hover { color: var(--gold); }
+.fb2 { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.fb2-copy { font-size: 0.7rem; color: var(--grey-lt); letter-spacing: 0.06em; font-family: 'Poppins', sans-serif; }
+.fb2-links { display: flex; gap: 2rem; }
+.fb2-links a { font-size: 0.65rem; color: var(--grey-lt); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color .2s; font-family: 'Poppins', sans-serif; }
+.fb2-links a:hover { color: var(--gold); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  #nav { padding: 1.4rem 5vw; }
+  .nav-links { display: none; }
+  .hbg { display: flex; }
+  .sub-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 40px 6vw;
+  }
+  .sub-main-content {
+    padding: 2rem;
+  }
+  .sub-sidebar {
+    position: static;
+  }
+  .ft { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 560px) {
+  .fb2 { flex-direction: column; align-items: flex-start; }
+}
+
+/* ─── INTERACTIVE MODAL FOR DRAFT EMAIL ─── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.modal-overlay.open {
+  display: flex;
+}
+.modal-card {
+  background: #111111;
+  border: 1px solid rgba(115, 0, 29, 0.3);
+  border-top: 4px solid var(--gold);
+  border-radius: 4px;
+  max-width: 550px;
+  width: 100%;
+  padding: 2.5rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  animation: modalFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.96) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-card h3 {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.6rem;
+}
+.modal-desc {
+  font-size: 0.8rem;
+  color: #b0b0b0;
+  line-height: 1.6;
+}
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.modal-field label {
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+}
+.modal-val-wrap {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.modal-val-wrap input,
+.modal-val-wrap textarea {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: #ffffff;
+  padding: 0.5rem 0.8rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.78rem;
+  outline: none;
+  width: 100%;
+}
+.modal-val-wrap textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+.copy-btn {
+  background: var(--gold);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.copy-btn:hover {
+  background: #a01030;
+}
+.modal-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+.modal-btn-primary {
+  background: #ffffff;
+  color: var(--gold);
+  border: none;
+  padding: 0.75rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.modal-btn-primary:hover {
+  background: #e4e4e4;
+}
+.modal-btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.75rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.modal-btn-secondary:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  transition: color 0.2s;
+}
+.modal-close-btn:hover {
+  color: #ffffff;
+}
+
+/* ─── FLOATING WHATSAPP WIDGET ─── */
+.wa-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 54px;
+  height: 54px;
+  background: #25D366;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+  z-index: 999;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.wa-float:hover {
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.6);
+}
+.wa-float svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div id="mm">
+  <button class="mm-x" onclick="document.getElementById('mm').classList.remove('open')">✕</button>
+  <a href="index.html#hero"       onclick="document.getElementById('mm').classList.remove('open')">Home</a>
+  <a href="index.html#about"      onclick="document.getElementById('mm').classList.remove('open')">About Us</a>
+  <a href="index.html#wheel-sec"  onclick="document.getElementById('mm').classList.remove('open')">Our Expertise</a>
+  <div class="mm-sub">
+    <a href="criminal-law.html">Criminal Law</a>
+    <a href="civil-law.html">Civil Law</a>
+    <a href="constitutional-law.html">Constitutional Law</a>
+    <a href="family-law.html">Family Law</a>
+    <a href="ndps-matters.html">NDPS Matters</a>
+    <a href="money-laundering.html">Money Laundering</a>
+    <a href="dispute-resolution.html">Dispute Resolution</a>
+    <a href="non-litigation.html">Non-Litigation</a>
+    <a href="service-matters.html">Service Matters</a>
+  </div>
+  <a href="index.html#team-sec"   onclick="document.getElementById('mm').classList.remove('open')">Our Team</a>
+  <a href="careers.html"          onclick="document.getElementById('mm').classList.remove('open')">Careers</a>
+  <a href="contact.html"    onclick="document.getElementById('mm').classList.remove('open')">Contact Us</a>
+</div>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <a href="index.html#hero" class="nav-brand">
+    <img src="logo.png" alt="Siji Malayil Associates Logo" style="height: 42px; width: auto; display: block;">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About Us</a></li>
+    <li>
+      <a href="index.html#wheel-sec">Our Expertise</a>
+      <div class="dropdown">
+        <a href="criminal-law.html">Criminal Law</a>
+        <a href="civil-law.html">Civil Law</a>
+        <a href="constitutional-law.html">Constitutional Law</a>
+        <a href="family-law.html">Family Law</a>
+        <a href="ndps-matters.html">NDPS Matters</a>
+        <a href="money-laundering.html">Money Laundering</a>
+        <a href="dispute-resolution.html">Dispute Resolution</a>
+        <a href="non-litigation.html">Non-Litigation</a>
+        <a href="service-matters.html">Service Matters</a>
+      </div>
+    </li>
+    <li><a href="index.html#team-sec">Our Team</a></li>
+    <li><a href="careers.html">Careers</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+  </ul>
+  <button class="hbg" onclick="document.getElementById('mm').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- SUB-HERO -->
+<section id="sub-hero" style="background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.45)), url('./legal_careers.png') center center / cover no-repeat;">
+  <div class="sub-hero-overlay"></div>
+  <div class="sub-hero-content">
+    <div class="breadcrumbs"><a href="index.html">Home</a> &gt; Careers</div>
+    <h1 class="sub-hero-title">Careers &amp; Internships</h1>
+    <p class="sub-hero-sub">Join an elite team of legal practitioners and shape the future of trial and appellate advocacy in Bangalore.</p>
+  </div>
+</section>
+
+<!-- CONTENT SECTION -->
+<section class="sub-container">
+  <div class="sub-main-content">
+    <p class="intro-text">"Siji Malayil Associates offers an intensive, hands-on environment for legal professionals and scholars who are dedicated to rigorous trial preparation, deep research, and elite courtroom representation."</p>
+    
+    <div class="details-text">
+      <p>At Siji Malayil Associates, we believe that the best legal strategies are forged through absolute preparation, scientific scrutiny of evidence, and an unyielding commitment to our clients' rights. Located in the heart of Bengaluru's commercial district, Manipal Centre, we operate at the forefront of criminal trial defense, civil litigation, PMLA inquiries, service matters, and commercial dispute resolution.</p>
+      <p>We are always looking to welcome bright, driven, and ethical minds into our chambers—whether as long-term associates or as part of our rigorous trial-court internship programs. If you possess a sharp analytical mind, a strong work ethic, and an eagerness to confront complex legal challenges in the courtroom, we invite you to build your career with us.</p>
+    </div>
+    
+    <h3>Litigation Internship Program</h3>
+    <div class="details-text">
+      <p>Our Internship Program is designed strictly for proactive law students (enrolled in recognized 3-year or 5-year LL.B. courses) who are genuinely interested in litigation and trial practice. We do not offer passive internships; our interns are fully integrated into daily chamber activities and actively shadow our senior litigators in the courts.</p>
+    </div>
+    
+    <ul class="focus-list">
+      <li><strong>Active Courtroom Exposure:</strong> Shadow advocates in the High Court of Karnataka, City Civil Courts, Sessions Courts, Magistrate Courts, and various tribunals across Bangalore to understand live trial proceedings and cross-examinations.</li>
+      <li><strong>Case Analysis &amp; Briefing:</strong> Participate in detailed file read-throughs, map prosecutorial narratives, extract facts, and prepare comprehensive case briefs for active trials.</li>
+      <li><strong>Advanced Legal Research:</strong> Draft detailed search memorandums on intricate questions of criminal law, NDPS procedures, constitutional writs, and civil litigation using SCC Online and raw case registries.</li>
+      <li><strong>Drafting Experience:</strong> Assist in the preparation and review of bail applications, writ petitions, civil pleadings, commercial contracts, and title scrutiny reports.</li>
+    </ul>
+
+    <h3>Selection Criteria &amp; Expectations</h3>
+    <ul class="focus-list">
+      <li><strong>Minimum Duration:</strong> A minimum commitment of 4 consecutive weeks is required for all interns to ensure a comprehensive, meaningful learning cycle.</li>
+      <li><strong>Academic Standing &amp; Research:</strong> Excellent academic performance, with highly demonstrated skills in drafting and digital legal databases.</li>
+      <li><strong>Professionalism:</strong> Strong adherence to the bar's ethical boundaries, absolute confidentiality regarding case documents, and absolute punctuality in court attendance.</li>
+    </ul>
+
+    <h3>Associate Positions</h3>
+    <div class="details-text">
+      <p>For qualified advocates looking to represent clients in high-stakes litigation, SMA offers a structured career path with immense trial exposure. Associates at our firm are trained to handle drafting, police liaisoning, regulatory responses (such as ED/PMLA summons), client briefing, and direct arguments in court under the mentorship of our Managing Partner, Adv. Siji Malayil.</p>
+    </div>
+    
+    <div class="sub-quote">
+      <p>"Chamber practice is not about reading law in isolation; it is the art of applying law to volatile human and commercial realities. We expect our team to bring absolute intellectual rigor and moral clarity to every case file."</p>
+    </div>
+  </div>
+  
+  <!-- SIDEBAR APPLICATION WIDGET -->
+  <aside class="sub-sidebar">
+    <div class="sidebar-card">
+      <h3>Join Our Chambers</h3>
+      <p>Use this interactive tool to compile your details and generate a pre-formatted application email to our managing team.</p>
+      <hr>
+      <form class="app-form" onsubmit="submitApplication(event)">
+        <div class="form-grp">
+          <label for="role">Application For</label>
+          <select id="role" required>
+            <option value="Internship">4-Week Litigation Internship</option>
+            <option value="Associate Advocate">Associate Advocate Position</option>
+            <option value="Research Scholar">Legal Research Scholar / Paralegal</option>
+          </select>
+        </div>
+        
+        <div class="form-grp">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="Adv. John Doe / Jane Smith" required>
+        </div>
+        
+        <div class="form-grp">
+          <label for="phone">Contact Number</label>
+          <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX" required>
+        </div>
+        
+        <div class="form-grp">
+          <label for="org">University / Current Firm</label>
+          <input type="text" id="org" placeholder="e.g. NLSIU / Symbiosis / Law Chambers" required>
+        </div>
+        
+        <button type="submit" class="sb-btn">Draft Application Email</button>
+      </form>
+    </div>
+  </aside>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="ft">
+    <div>
+      <div class="fb-name">Siji Malayil Associates</div>
+      <div class="fb-sub">Advocates &amp; Legal Consultants</div>
+      <p class="fb-body">A full-service law firm based in Bengaluru, offering holistic and fully integrated legal solutions with an unwavering client-focused approach.</p>
+      <div class="f-social">
+        <a href="https://www.linkedin.com/company/siji-malayil-associates/" target="_blank">in</a>
+        <a href="https://wa.me/919844104360" target="_blank">w</a>
+      </div>
+    </div>
+    <div class="fc">
+      <h5>Bangalore</h5>
+      <p>S-510, 5th Floor, Manipal Centre,</p>
+      <p>South Block, M.G. Road,</p>
+      <p>Bangalore, Karnataka – 560 042</p>
+      <p style="margin-top:0.4rem;color:#444;font-size:0.68rem;">2 min walk · Trinity Metro Station</p>
+      <a href="tel:+919980554360" style="margin-top:0.8rem;">+91 998 055 4360</a>
+      <a href="tel:+919844104360">+91 984 410 4360</a>
+      <a href="tel:+918025578751">+91 80 2557 8751</a>
+    </div>
+    <div class="fc">
+      <h5>Information</h5>
+      <a href="mailto:contact@sijimalayil.com">contact@sijimalayil.com</a>
+      <a href="index.html#about"      style="margin-top:0.6rem;">About the Firm</a>
+      <a href="index.html#ticker-sec">Practice Areas</a>
+      <a href="index.html#wheel-sec">Our Expertise</a>
+      <a href="index.html#team-sec">Our Team</a>
+      <a href="careers.html">Careers</a>
+      <a href="#">Legal &amp; Regulatory</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+  <div class="fb2">
+    <span class="fb2-copy">© 2024 Siji Malayil Associates. All rights reserved.</span>
+    <div class="fb2-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+
+<!-- DRAFT EMAIL MODAL POPUP -->
+<div id="emailModal" class="modal-overlay">
+  <div class="modal-card">
+    <button class="modal-close-btn" onclick="closeModal()">✕</button>
+    <h3>Application Draft Ready!</h3>
+    <p class="modal-desc">Your details have been successfully formatted. A native email client (`mailto:`) request has been triggered. If your device did not open your mail application automatically, you can open Gmail Webmail directly or copy the compiled fields manually below.</p>
+    
+    <div class="modal-field">
+      <label>Recipient Email Address</label>
+      <div class="modal-val-wrap">
+        <input type="text" id="m-rec" value="contact@sijimalayil.com" readonly>
+        <button class="copy-btn" onclick="copyField('m-rec')">Copy</button>
+      </div>
+    </div>
+    
+    <div class="modal-field">
+      <label>Email Subject Line</label>
+      <div class="modal-val-wrap">
+        <input type="text" id="m-sub" readonly>
+        <button class="copy-btn" onclick="copyField('m-sub')">Copy</button>
+      </div>
+    </div>
+    
+    <div class="modal-field">
+      <label>Email Message Body</label>
+      <div class="modal-val-wrap">
+        <textarea id="m-body" readonly></textarea>
+        <button class="copy-btn" onclick="copyField('m-body')">Copy</button>
+      </div>
+    </div>
+    
+    <div class="modal-actions">
+      <a href="" id="btn-gmail" target="_blank" class="modal-btn-primary">Open in Gmail Web</a>
+      <a href="" id="btn-native" class="modal-btn-secondary">Retry Native App</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('stuck', window.scrollY > 60);
+  });
+
+  function submitApplication(event) {
+    event.preventDefault();
+    
+    const role = document.getElementById('role').value;
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const org = document.getElementById('org').value;
+    
+    const recipient = 'contact@sijimalayil.com';
+    const rawSubject = `${role} Application - ${name}`;
+    const rawBody = `Dear Managing Partner,\n\nI am writing to formally apply for a ${role.toLowerCase()} opportunity at Siji Malayil Associates.\n\nHere are my quick details:\n- Full Name: ${name}\n- Contact Number: ${phone}\n- University / Institution / Current Org: ${org}\n\nI have attached my Curriculum Vitae (CV) and a brief Statement of Purpose (SOP) to this email for your review.\n\nThank you for your time and professional consideration.\n\nSincerely,\n${name}`;
+    
+    // Set values in the modal fields
+    document.getElementById('m-sub').value = rawSubject;
+    document.getElementById('m-body').value = rawBody;
+    
+    // Encode parameters for URLs
+    const encodedSubject = encodeURIComponent(rawSubject);
+    const encodedBody = encodeURIComponent(rawBody);
+    
+    // Trigger standard native mailto: trigger
+    const nativeUrl = `mailto:${recipient}?subject=${encodedSubject}&body=${encodedBody}`;
+    document.getElementById('btn-native').href = nativeUrl;
+    
+    // Draft Gmail Web Compose URL (highly useful fallback)
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${encodedSubject}&body=${encodedBody}`;
+    document.getElementById('btn-gmail').href = gmailUrl;
+    
+    // Open the premium Modal Overlay
+    document.getElementById('emailModal').classList.add('open');
+    
+    // Fire the native link immediately
+    window.location.href = nativeUrl;
+  }
+  
+  function closeModal() {
+    document.getElementById('emailModal').classList.remove('open');
+  }
+  
+  function copyField(elementId) {
+    const el = document.getElementById(elementId);
+    el.select();
+    el.setSelectionRange(0, 99999); /* For mobile devices */
+    
+    try {
+      navigator.clipboard.writeText(el.value);
+      alert('Copied to clipboard successfully!');
+    } catch(err) {
+      // Fallback
+      document.execCommand('copy');
+      alert('Copied to clipboard!');
+    }
+  }
+</script>
+
+<!-- Floating WhatsApp Widget -->
+<a href="https://wa.me/919844104360" class="wa-float" target="_blank" aria-label="Message Siji Malayil Associates on WhatsApp">
+  <svg viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+</body>
+</html>
