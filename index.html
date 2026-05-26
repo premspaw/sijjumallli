@@ -197,11 +197,13 @@ body {
 /* ─── MOBILE MENU ─── */
 #mm {
   display: none; position: fixed; inset: 0; z-index: 190;
-  background: #000000; flex-direction: column; align-items: center; justify-content: center; gap: 2.2rem;
+  background: #000000; flex-direction: column; align-items: center;
+  justify-content: flex-start; gap: 1.6rem;
+  padding: 5rem 1.5rem 3rem; overflow-y: auto;
 }
 #mm.open { display: flex; }
 .mm-x { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; color: #ffffff; font-size: 1.4rem; cursor: pointer; }
-#mm a { font-family: 'Noto Serif', serif; font-size: 2.2rem; font-weight: 300; color: #ffffff; text-decoration: none; letter-spacing: 0.05em; transition: color .2s; }
+#mm a { font-family: 'Noto Serif', serif; font-size: 1.8rem; font-weight: 300; color: #ffffff; text-decoration: none; letter-spacing: 0.05em; transition: color .2s; }
 #mm a:hover { color: var(--gold); }
 
 /* ══════════════════════════════════════════
@@ -623,11 +625,12 @@ footer {
   #about     { grid-template-columns: 1fr; gap: 2rem; padding: 40px 6vw; }
   #wheel-sec { padding: 50px 6vw; gap: 2.5rem; }
   .wlist     { grid-template-columns: repeat(3, 1fr); gap: 0.8rem 4vw; padding-top: 1.8rem; }
-  #team-sec  { padding: 60px 6vw; }
+  #team-sec  { display: none !important; }
   .team-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
   .about-img { max-width: 100%; }
   .ft { grid-template-columns: 1fr; gap: 2.5rem; }
   .h-circle { width: 300px; height: 300px; right: -80px; }
+  a[href*="team-sec"] { display: none !important; }
 }
 @media (max-width: 560px) {
   #hero { padding: 0 6vw 14vw; }
